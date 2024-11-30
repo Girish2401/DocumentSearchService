@@ -7,7 +7,9 @@ import { Observable } from 'rxjs';
 })
 export class DocumentService {
 
-  private api_url: string = "http://localhost:3000"
+  // private api_url: string = "http://localhost:3000"
+  private api_url: string = "https://documentsearchservice-backend.onrender.com"
+
 
   constructor(private http: HttpClient) { }
 
