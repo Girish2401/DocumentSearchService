@@ -72,14 +72,19 @@ export class AppComponent implements OnInit {
   }
 
   filterFiles(event: any) {
-    this.filteredFiles = this.files.filter((file) => {
-      if (this.selectedFiles.includes(file.filename.split('.')[1]))
-        return true;
-      else if (this.selectedDates.includes(file.modifiedDate.split('T')[0]))
-        return true;
-      return false
+    if (!this.selectedFiles.length && !this.selectedDates.length) {
+      this.filteredFiles = this.files;
     }
-    );
+    else {
+      this.filteredFiles = this.files.filter((file) => {
+        if (this.selectedFiles.includes(file.filename.split('.')[1]))
+          return true;
+        else if (this.selectedDates.includes(file.modifiedDate.split('T')[0]))
+          return true;
+        return false
+      }
+      );
+    }
   }
 
   toggleFilters() {
