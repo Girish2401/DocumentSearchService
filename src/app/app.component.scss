@@ -1,0 +1,150 @@
+.recents-section {
+  margin: 20px;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.recents-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+.recent-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.recent-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.file-icon {
+  color: #6366f1;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.file-name {
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.file-meta {
+  font-size: 14px;
+  color: #888;
+}
+
+
+button {
+  background-color: #e0e0e0;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #d6d6d6;
+}
+
+.pi-filter {
+  font-size: 16px;
+}
+
+
+.file-cards-container {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding: 20px 10px;
+}
+
+.file-card {
+  background: #efe4e4;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  width: 180px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-left: 10px;
+}
+
+.file-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.file-card-icon {
+  font-size: 40px;
+  color: #4b5563;
+  margin-bottom: 10px;
+}
+
+.file-card-icon.orange {
+  color: #f97316;
+}
+
+.file-card-icon.green {
+  color: #10b981;
+}
+
+.file-card-icon.blue {
+  color: #3b82f6;
+}
+
+.file-card-details {
+  margin-bottom: 10px;
+}
+
+.file-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 5px;
+}
+
+.file-date {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.file-card-avatars {
+  display: flex;
+  gap: -10px;
+  position: absolute;
+  bottom: 10px;
+}
+
+.avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

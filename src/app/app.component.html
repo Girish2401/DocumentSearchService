@@ -1,22 +1,62 @@
-<span class="p-input-icon-left w-full">
-  <i class="pi pi-search"></i>
-  <input type="text" class="w-9" pInputText placeholder="Search content" (ngModelChange)="onSearchTermChange($event)"
-    [(ngModel)]="searchValue" />
-</span>
+<div class="recents-section">
+  <h2>Recently Uploaded Files</h2>
+  <div class="recents-grid">
+    <div class="recent-card" *ngFor="let file of recentFiles">
+      <div class="file-icon">
+        <!-- <i class="pi pi-file" style="font-size: 2rem"></i> -->
+        <ng-container [ngSwitch]="getFileExtension(file.filename)">
+          <i *ngSwitchCase="'pdf'" style="color: red;" class="pi pi-file-pdf file-card-icon"></i>
+          <i *ngSwitchCase="'ocx'" style="color: blue;" class="pi pi-file-word file-card-icon"></i>
+          <i *ngSwitchCase="'txt'" style="color: lightblue;" class="pi pi-file file-card-icon"></i>
+          <div *ngSwitchDefault>This is an unknown file type: {{ file.filename }}</div>
+        </ng-container>
+      </div>
+      <div class="file-info">
+        <div class="file-name">{{ file.filename.slice(0, file.filename.lastIndexOf('.')) }}</div>
+        <div class="file-meta">{{ file.modifiedDate | date: 'MMM dd, yyyy' }} · {{ file.size }} bytes</div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<ng-container *ngIf="searchValue">
-  <p-table [value]="files">
-    <ng-template pTemplate="header">
-      <tr>
-        <th>File name</th>
-        <th>File URL</th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-file>
-      <tr>
-        <td>{{file.filename}}</td>
-        <td><a [href]="file.url" target="_blank">{{file.url}}</a></td>
-      </tr>
-    </ng-template>
-  </p-table>
-</ng-container>
+<h2 style="margin-left: 20px">Search Files here ..</h2>
+
+<div class="flex align-items-center justify-content-center">
+  <span class="p-input-icon-left w-full" style="margin-left: 20px">
+    <i class="pi pi-search"></i>
+    <input type="text" class="w-9" pInputText placeholder="Search content" (ngModelChange)="onSearchTermChange($event)"
+      [(ngModel)]="searchValue" />
+  </span>
+  <button pButton type="button" icon="pi pi-filter" label="Filters" [disabled]="!files.length"
+    (click)="toggleFilters()"></button>
+</div>
+
+
+
+
+<div class="w-full mt-2" style="margin-left: 20px;" *ngIf="isFiltersEnabled">
+  <span class="mr-2 w-3">
+    <p-multiSelect class="w-3" (onChange)="filterFiles($event)" [options]="availableFileTypes"
+      [(ngModel)]="selectedFiles" defaultLabel="Select File type" display="chip"></p-multiSelect>
+  </span>
+  <span>
+    <p-multiSelect (onChange)="filterFiles($event)" [options]="availableDates" [(ngModel)]="selectedDates"
+      defaultLabel="Select Dates" display="chip"></p-multiSelect>
+  </span>
+</div>
+
+<div class="file-cards-container">
+  <div class="file-card" *ngFor="let file of filteredFiles">
+    <!-- <i class="pi pi-file file-card-icon"></i> -->
+    <ng-container [ngSwitch]="getFileExtension(file.filename)">
+      <i *ngSwitchCase="'pdf'" style="color: red;" class="pi pi-file-pdf file-card-icon"></i>
+      <i *ngSwitchCase="'ocx'" style="color: blue;" class="pi pi-file-word file-card-icon"></i>
+      <i *ngSwitchCase="'txt'" style="color: lightblue;" class="pi pi-file file-card-icon"></i>
+      <div *ngSwitchDefault>This is an unknown file type: {{ file.filename }}</div>
+    </ng-container>
+    <div class="file-card-details">
+      <div class="file-title">{{ file.filename.slice(0, file.filename.lastIndexOf('.')) }}</div>
+      <div class="file-date">{{ file.modifiedDate | date: 'MMM dd, yyyy'}}</div>
+    </div>
+  </div>
+</div>

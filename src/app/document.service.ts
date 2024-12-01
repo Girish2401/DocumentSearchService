@@ -13,7 +13,11 @@ export class DocumentService {
 
   constructor(private http: HttpClient) { }
 
-  getAllFiles(searchValue = '') {
+  getAllFiles() {
+    return this.http.get(`${this.api_url}/api/all`);
+  }
+
+  getRequiredFiles(searchValue = '') {
     let params = new HttpParams();
     params = params.set('q', searchValue)
     return this.http.get(`${this.api_url}/api/search`, { params });
